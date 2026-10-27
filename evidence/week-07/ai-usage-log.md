@@ -8,4 +8,4 @@
 | Tombol "Lihat Program" berwarna ungu dan ada garis bawah | "Cara memaksa tombol CSS jadi putih bersih?" | Gunakan properti `background-color: #ffffff !important;` dan `text-decoration: none !important;` | Diterima | Tombol berubah menjadi kotak putih dengan teks biru |
 | Setup Git Identity (`Author identity unknown`) | "Git error author identity unknown" | Jalankan `git config --global user.name` dan `user.email` sesuai akun GitHub. | Diterima | Commit berhasil dilakukan dan dikenali oleh Git |
 
-**Catatan Tambahan:** Saya menggunakan AI (Gemini/DeepSeek) sebagai tutor dan *debugger* saat menemui jalan buntu. Saya tetap mengerjakan kodingan utamanya secara manual di VS Code, menyesuaikan CSS agar desainnya berbeda dari teman (tema gelap + partikel), dan memastikan saya paham alur MVC-nya (Route -> Controller -> Blade).
+**Catatan Tambahan:** Saya menggunakan AI sebagai tutor dan *debugger* saat menemui jalan buntu atau error. Saya tetap mengerjakan kodingan utamanya secara manual di VS Code, menyesuaikan CSS agar desainnya berbeda dari teman (tema gelap + partikel), dan memastikan saya paham alur MVC-nya (Route -> Controller -> Blade).

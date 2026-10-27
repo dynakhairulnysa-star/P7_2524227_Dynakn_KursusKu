@@ -1,9 +1,104 @@
-@import 'tailwindcss';
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
+/* =========================================================
+   CUSTOM DARK THEME & BACKGROUND ANIMASI
+   ========================================================= */
+body {
+    background-color: #050B14;
+    color: #f8fafc;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    min-height: 100vh;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+#particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
+#tech-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -4; background: radial-gradient(ellipse at 20% 20%, #1e293b 0%, #0f172a 55%, #020617 100%); }
+.tech-overlay { position: fixed; inset: 0; z-index: -3; opacity: 0.7; background-image: linear-gradient(rgba(59, 130, 246, .06) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, .06) 1px, transparent 1px); background-size: 60px 60px; animation: gridMove 20s linear infinite; }
+@keyframes gridMove { 0% { background-position: 0 0; } 100% { background-position: 0 60px; } }
+.tech-binary { position: fixed; inset: 0; z-index: -1; opacity: 0.6; font-family: "Courier New", monospace; font-size: 0.75rem; color: rgba(96, 165, 250, 0.3); pointer-events: none;}
+.tech-binary span { position: absolute; animation: floatText 6s ease-in-out infinite alternate; }
+@keyframes floatText { 0% { opacity: .3; transform: translateY(0); } 100% { opacity: .8; transform: translateY(-15px); } }
+.tech-panel { position: fixed; bottom: 40px; right: 30px; z-index: -1; opacity: 0.6; width: 160px; padding: 12px 14px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; font-family: "Courier New", monospace; font-size: 0.65rem; color: rgba(96, 165, 250, 0.8); backdrop-filter: blur(6px); pointer-events: none;}
+.tech-panel-title { margin-bottom: 8px; letter-spacing: .1em; opacity: .9; }
+.tech-bar { height: 4px; background: rgba(59, 130, 246, 0.15); border-radius: 999px; margin-bottom: 6px; overflow: hidden; }
+.tech-bar span { display: block; height: 100%; background: linear-gradient(90deg, #3b82f6, #60a5fa); animation: barPulse 2.5s ease-in-out infinite alternate; box-shadow: 0 0 8px rgba(59, 130, 246, 0.6); }
+@keyframes barPulse { 0% { opacity: .4; width: 20%; } 100% { opacity: 1; width: 100%; } }
+
+/* =========================================================
+   OVERRIDE BOOTSTRAP (TEMA GELAP)
+   ========================================================= */
+.navbar { background-color: rgba(15, 23, 42, 0.9) !important; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(59, 130, 246, 0.3); }
+.navbar-brand { color: #60a5fa !important; font-weight: 800; }
+.nav-link { color: #cbd5e1 !important; font-weight: 600; }
+.nav-link:hover { color: #60a5fa !important; }
+
+.card { background: rgba(30, 41, 59, 0.75) !important; backdrop-filter: blur(16px); border: 1px solid rgba(59, 130, 246, 0.3) !important; color: #f8fafc !important; }
+.card-body { color: #f8fafc; }
+h1, h2, h3, h4, h5, h6 { color: #f8fafc !important; }
+.text-secondary { color: #94a3b8 !important; }
+.lead { color: #cbd5e1 !important; }
+
+/* Input Form */
+.form-control, .form-select { background-color: rgba(15, 23, 42, 0.8) !important; border: 1px solid rgba(59, 130, 246, 0.4) !important; color: #f8fafc !important; }
+.form-control:focus, .form-select:focus { background-color: rgba(15, 23, 42, 0.9) !important; color: #f8fafc !important; box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25) !important; border-color: #3b82f6 !important; }
+
+/* =========================================================
+   CUSTOM NAVBAR (PREMIUM LOOK)
+   ========================================================= */
+.custom-navbar { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px) saturate(160%); border-bottom: 1px solid rgba(59, 130, 246, 0.3); box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4); padding: 1.25rem 0; position: sticky; top: 0; z-index: 1000; }
+.nav-container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.brand-wrap { display: flex; align-items: center; gap: 1rem; }
+.logo-badge { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.5rem; box-shadow: 0 0 24px rgba(59, 130, 246, 0.5); }
+.brand-text h1 { margin: 0; font-size: 1.6rem; font-weight: 900; color: #fff; line-height: 1.1; }
+.brand-text p { margin: 0.1rem 0 0; font-size: 0.85rem; font-weight: 600; color: #cbd5e1; }
+.nav-right { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.milestone-badge { padding: 0.4rem 1rem; border-radius: 999px; background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.5); color: #ffffff; font-size: 0.85rem; font-weight: 700; box-shadow: 0 0 10px rgba(59, 130, 246, 0.3); transition: all 0.2s ease; }
+.milestone-badge:hover { color: #60a5fa; box-shadow: 0 0 15px rgba(59, 130, 246, 0.6); }
+.nav-links { display: flex; gap: 1rem; }
+.nav-link-custom { color: #ffffff; text-decoration: none; font-weight: 700; font-size: 0.95rem; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.2s ease; }
+.nav-link-custom:hover { color: #60a5fa; background: rgba(59, 130, 246, 0.1); text-decoration: none; }
+
+/* =========================================================
+   TAMPILAN CARD KURSUS
+   ========================================================= */
+.custom-card { background: rgba(30, 41, 59, 0.75) !important; border: 1px solid rgba(59, 130, 246, 0.25) !important; border-radius: 16px !important; color: #e2e8f0 !important; transition: all 0.3s ease; }
+.custom-card:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.6) !important; box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 30px rgba(59, 130, 246, 0.2); }
+.custom-card h3 { color: #60a5fa !important; font-weight: 800; font-size: 1.3rem; }
+.course-code { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(59, 130, 246, 0.15); color: #60a5fa; border-radius: 6px; font-size: 0.8rem; font-weight: 700; align-self: flex-start; }
+.course-price { font-size: 1.6rem; font-weight: 800; color: #60a5fa; margin: 0.5rem 0; }
+.course-date, .course-quota { font-size: 0.9rem; color: #94a3b8; margin: 0; }
+.badge-available { display: inline-block; padding: 8px 16px; border-radius: 999px; font-weight: 800; font-size: 0.9rem; background: rgba(59, 130, 246, 0.25); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.6); }
+.badge-full { display: inline-block; padding: 8px 16px; border-radius: 999px; font-weight: 800; font-size: 0.9rem; background: rgba(239, 68, 68, 0.25); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.6); }
+
+/* =========================================================
+   CUSTOM ALERT AJAX (BIRU NEON)
+   ========================================================= */
+.alert-info-custom {
+    background: rgba(59, 130, 246, 0.1) !important;
+    border: 1px solid rgba(59, 130, 246, 0.3) !important;
+    color: #94a3b8 !important;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.alert-success-custom {
+    background: rgba(59, 130, 246, 0.2) !important;
+    border: 1px solid #60a5fa !important;
+    color: #60a5fa !important;
+    box-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
+    text-shadow: 0 0 5px rgba(96, 165, 250, 0.5);
+    border-radius: 10px;
+}
+
+.alert-danger-custom {
+    background: rgba(239, 68, 68, 0.2) !important;
+    border: 1px solid #fca5a5 !important;
+    color: #fca5a5 !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+    border-radius: 10px;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .nav-container { flex-direction: column; align-items: flex-start; }
+    .nav-right { width: 100%; justify-content: space-between; margin-top: 10px; }
 }
